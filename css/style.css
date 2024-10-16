@@ -677,10 +677,12 @@ div#deconnexion {
 
 .collection_cooldown_1 {
     width: max-content;
+    cursor: help;
 }
 
 .collection_cooldown_2 {
     width: max-content;
+    cursor: help;
 }
 
 #container_collection_and_deck {
