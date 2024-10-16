@@ -1,0 +1,932 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Fond de la page */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.content {
+
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 20px 20px rgb(0 0 0 / 93%);
+    border-radius: 8px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Permet au contenu de prendre tout l'espace restant */
+    background-color: #f0f0f0; /* Couleur de fond de la div content (optionnel) */
+}
+
+.logo {
+    position: absolute;
+    top: 20px; /* Ajustez selon la position désirée */
+    width: 250px; /* Ajustez la largeur du logo */
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+    box-shadow: 0px 0px 11px 20px rgb(27 6 17);
+    border-radius: 8px;
+}
+
+.button {
+    padding: 2vw;
+    background-image: url(../img/container_img.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 20px;
+    width: 60vh;
+    box-shadow: inset 0 0 10px 10px rgb(0 0 0 / 93%);
+}
+
+.button-container {
+    color: #ffffff;
+    text-align: center;
+    width: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: unset;
+    background: #3f3f3fb3;
+    border-radius: 25px;
+    box-shadow: 0px 0px 4px 10px rgb(0 0 0 / 93%);
+    padding: 1em;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.button>a {
+    text-decoration: unset;
+}
+
+.button:hover{
+    filter: grayscale(100%);
+}
+
+.button-container:hover {
+    filter: sepia(1);
+}
+
+form.form_container {
+    width: min-content;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1 {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    background-color: #2c2f33; /* Fond sombre pour le style fantasy */
+    color: #ffffff; /* Couleur du texte */
+    border: 2px solid #7289da; /* Bordure bleue pour un effet magique */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px 15px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    font-family: 'Arial', sans-serif; /* Police */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ombre autour du champ */
+    transition: all 0.3s ease; /* Transition douce pour les effets */
+    font-family: 'Bebas Neue';
+}
+
+input[type="text"]::placeholder {
+    color: #99aab5; /* Couleur des placeholder */
+    opacity: 0.8; /* Opacité pour le placeholder */
+}
+
+input[type="text"]:focus {
+    border-color: #61afef; /* Changement de couleur de bordure au focus */
+    box-shadow: 0 0 15px rgba(97, 175, 239, 0.8); /* Ombre accentuée au focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+
+button.button-submit {
+    padding: unset;
+}
+
+input[type="password"] {
+    background-color: #2c2f33; /* Fond sombre pour le style fantasy */
+    color: #ffffff; /* Couleur du texte */
+    border: 2px solid #7289da; /* Bordure bleue pour un effet magique */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px 15px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    font-family: 'Arial', sans-serif; /* Police */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ombre autour du champ */
+    transition: all 0.3s ease; /* Transition douce pour les effets */
+    width: 80%;
+}
+
+input[type="password"]::placeholder {
+    color: #99aab5; /* Couleur des placeholder */
+    opacity: 0.8; /* Opacité pour le placeholder */
+}
+
+input[type="email"] {
+    background-color: #2c2f33; /* Fond sombre pour le style fantasy */
+    color: #ffffff; /* Couleur du texte */
+    border: 2px solid #7289da; /* Bordure bleue pour un effet magique */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px 15px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    font-family: 'Arial', sans-serif; /* Police */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ombre autour du champ */
+    transition: all 0.3s ease; /* Transition douce pour les effets */
+    width: 80%;
+}
+
+input[type="email"]::placeholder {
+    color: #99aab5; /* Couleur des placeholder */
+    opacity: 0.8; /* Opacité pour le placeholder */
+}
+
+input[type="password"]:focus {
+    border-color: #61afef; /* Changement de couleur de bordure au focus */
+    box-shadow: 0 0 15px rgba(97, 175, 239, 0.8); /* Ombre accentuée au focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+.buttons_container {
+    padding-bottom: 1em;
+}
+
+.button.button_inscription {
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+.connexion_inscription{
+    margin-top: 5em;
+}
+
+/* HEADER */
+
+.header, .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 0;
+    position: fixed;
+    border-radius: 25px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgb(0 0 0 / 56%);
+}
+
+.header {
+    top: 0; /* Positionne le header en haut */
+}
+
+.footer {
+    bottom: 0; /* Positionne le footer en bas */
+}
+
+.header div, .footer div {
+    flex: 1; /* Égalise la taille de chaque élément */
+    text-align: center; /* Centre le texte */
+    transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+/* Styles pour les éléments au survol */
+.header div:hover,
+.footer div:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Changement de couleur au survol */
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    .header, .footer {
+        flex-direction: column; /* Change la direction pour les petits écrans */
+    }
+
+    .header div, .footer div {
+        margin: 5px 0; /* Espace entre les éléments */
+        flex: none; /* Annule l'égalisation des tailles */
+    }
+}
+
+#play {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #0f7218;
+    color: #ffffff;
+    font-size: 2em;
+    margin-top: 10vh;
+    font-weight: bold;
+    filter: drop-shadow(2px 4px 6px black);
+    border: none;
+    border-radius: 5px 5px 30px 30px;
+    text-align: center;
+    text-decoration: none;
+    width: 5em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Effet au survol */
+#play:hover {
+    background-color: #45a049; /* Couleur de fond au survol */
+    transform: scale(1.05); /* Agrandit légèrement le bouton */
+}
+
+#searching_game {
+    font-size: 12px; /* Taille du texte plus petit */
+    color: #999; /* Couleur du texte */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 10px; /* Espacement en bas pour séparer du bouton */
+    animation: loading 1.5s infinite; /* Animation de chargement */
+}
+
+/* Animation de chargement */
+@keyframes loading {
+    0% {
+        opacity: 0.5; /* Début semi-transparent */
+    }
+    50% {
+        opacity: 1; /* Pleine opacité */
+    }
+    100% {
+        opacity: 0.5; /* Retour à semi-transparent */
+    }
+}
+#searching_game {
+    padding: 2vh;
+    font-size: 2vh;
+    color: #ffffff;
+    box-shadow: black 2px 2px 11px 10px;
+    text-align: center;
+    background: #a7a7a7a6;
+    margin-bottom: 1vh;
+    animation: loading 1.5s infinite;
+}
+
+#gold {
+    display: flex; /* Active le mode flex */
+    align-items: center; /* Aligne verticalement au centre */
+    font-size: 2.5vh; /* Ajustez la taille de la police selon vos besoins */
+}
+
+#gold img {
+    margin-left: 5px; /* Espace entre le texte et l'image */
+    height: 5vh; /* Ajustez la hauteur de l'image si nécessaire */
+}
+
+#rank {
+    display: flex; /* Active le mode flex */
+    align-items: center; /* Aligne verticalement au centre */
+    font-size: 2.5vh; /* Ajustez la taille de la police selon vos besoins */
+}
+
+#rank img {
+    margin-left: 5px; /* Espace entre le texte et l'image */
+    height: 5vh; /* Ajustez la hauteur de l'image si nécessaire */
+}
+
+#match_found {
+    position: fixed; /* Garde l'élément toujours visible à un endroit fixe */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste le centrage */
+    background-color: rgba(0, 128, 0, 0.9); /* Couleur de fond vert foncé avec un peu de transparence */
+    color: #fff; /* Couleur du texte blanche */
+    font-size: 2.5em; /* Taille du texte relativement grande */
+    font-weight: bold; /* Texte en gras */
+    padding: 20px 40px; /* Espacement interne pour donner de la place au texte */
+    border-radius: 15px; /* Coins arrondis pour un effet doux */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Ombre portée pour un effet de relief */
+    text-align: center; /* Centre le texte */
+    z-index: 1000; /* Assure que l'élément est au-dessus des autres */
+    animation: pulse 1.5s infinite; /* Animation pour un effet de pulsation */
+}
+
+/* Animation de pulsation */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* SHOP */
+
+#container_shop {
+    width: 80%;
+    max-height: 70vh; /* Hauteur maximale ajustée à 70vh */
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour bien s'accorder avec le thème fantasy */
+    border-radius: 15px;
+    border: 3px solid #ffbf00; /* Bordure dorée pour un aspect héroïque */
+    box-shadow: 0px 0px 20px 5px rgba(255, 215, 0, 0.5); /* Ombre pour donner un effet de magie */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.shop-items {
+    display: flex; /* Utilise flexbox pour afficher les items en ligne */
+    flex-wrap: wrap; /* Permet de passer à la ligne si l'espace est insuffisant */
+    justify-content: space-between; /* Espace entre les items */
+    width: 100%; /* Occupe toute la largeur disponible */
+}
+
+.shop-item {
+    width: 25%; /* Ajuste la largeur pour avoir plusieurs items par ligne */
+    padding: 15px;
+    background: #333; /* Couleur sombre pour un aspect fantasy */
+    border-radius: 10px;
+    border: 2px solid #4e2a05; /* Bordure brune pour le style "combat fantasy" */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px; /* Espace entre les lignes de shop-item */
+}
+
+.shop-item:hover {
+    transform: scale(1.05); /* Effet de survol */
+    box-shadow: 0px 0px 15px 5px rgba(255, 215, 0, 0.6); /* Effet de survol lumineux */
+}
+
+.shop-item button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-family: cursive;
+    font-weight: 900;
+    gap: 0em;
+    background: #ff4500;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 2.5vh;
+}
+
+/* Changement de couleur au survol */
+.shop-item button:hover {
+    background: #e63900; /* Couleur plus sombre au survol */
+    transform: scale(1.05); /* Légère augmentation de taille au survol */
+}
+
+/* Effet de focus */
+.shop-item button:focus {
+    outline: none; /* Pas de contour par défaut */
+    box-shadow: 0 0 5px #ffbf00; /* Ombre dorée autour du bouton lors du focus */
+}
+
+#name_pack_1,
+#name_pack_2,
+#name_pack_3 {
+    color: antiquewhite;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+#desc_pack_1,
+#desc_pack_2,
+#desc_pack_3 {
+    color: #b2acac;
+    font-family: cursive;
+    font-weight: 900;
+}
+.modal {
+    display: none; /* Masquer par défaut */
+    position: fixed; 
+    z-index: 1000; /* Au-dessus du contenu */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+}
+
+.modal-content {
+    background-color: #222; /* Fond sombre pour le contenu */
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #ffbf00; /* Bordure dorée */
+    border-radius: 10px;
+    width: 80%; /* Largeur de la modal */
+    max-width: 600px; /* Largeur maximale */
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Ombre pour donner de la profondeur */
+}
+
+.close-button {
+    color: #ffbf00; /* Couleur du bouton de fermeture */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #e63900; /* Changement de couleur au survol */
+}
+
+#new-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de se répartir sur plusieurs lignes */
+    gap: 15px; /* Espace entre les cartes */
+    justify-content: center; /* Centrer les cartes */
+}
+
+.card {
+    background: #333; /* Couleur sombre pour les cartes */
+    border: 1px solid #4e2a05; /* Bordure brune */
+    border-radius: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    width: 120px; /* Largeur de la carte */
+    text-align: center; /* Centrer le texte */
+}
+
+.card img {
+    width: 100%; /* Adapter l'image à la carte */
+    height: auto; /* Maintenir les proportions */
+    border-radius: 10px; /* Coins arrondis pour l'image */
+}
+
+.card h3 {
+    font-size: 1.1em; /* Taille de police plus petite pour le titre */
+}
+
+.card p {
+    font-size: 0.9em; /* Taille de police plus petite pour le texte */
+}
+
+#container_collection {
+    width: 80%;
+    max-height: 70vh; /* Hauteur maximale ajustée à 70vh */
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour bien s'accorder avec le thème fantasy */
+    border-radius: 15px;
+    border: 3px solid #ffbf00; /* Bordure dorée pour un aspect héroïque */
+    box-shadow: 0px 0px 20px 5px rgba(255, 215, 0, 0.5); /* Ombre pour donner un effet de magie */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#container_deck {
+    width: 20%;
+    max-height: 70vh; /* Hauteur maximale ajustée à 70vh */
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour bien s'accorder avec le thème fantasy */
+    border-radius: 15px;
+    border: 3px solid #ffbf00; /* Bordure dorée pour un aspect héroïque */
+    box-shadow: 0px 0px 20px 5px rgba(255, 215, 0, 0.5); /* Ombre pour donner un effet de magie */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#container_deck_create {
+    width: 20%;
+    max-height: 70vh; /* Hauteur maximale ajustée à 70vh */
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour bien s'accorder avec le thème fantasy */
+    border-radius: 15px;
+    border: 3px solid #ffbf00; /* Bordure dorée pour un aspect héroïque */
+    box-shadow: 0px 0px 20px 5px rgba(255, 215, 0, 0.5); /* Ombre pour donner un effet de magie */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+#container_create_deck {
+    width: 20%;
+    max-height: 70vh; /* Hauteur maximale ajustée à 70vh */
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour bien s'accorder avec le thème fantasy */
+    border-radius: 15px;
+    border: 3px solid #ffbf00; /* Bordure dorée pour un aspect héroïque */
+    box-shadow: 0px 0px 20px 5px rgba(255, 215, 0, 0.5); /* Ombre pour donner un effet de magie */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    border: 2px solid #4e2a05; /* Bordure brune pour le style "combat fantasy" */
+    border-radius: 5px;
+    background: #333; /* Couleur sombre pour un aspect fantasy */
+    color: #fff;
+}
+
+select {
+    padding: 10px;
+    width: 80%;
+    border: 2px solid #4e2a05; /* Bordure brune pour le style "combat fantasy" */
+    border-radius: 5px;
+    background: #333; /* Couleur sombre pour un aspect fantasy */
+    color: #fff;
+    font-family: 'Bebas Neue';
+}
+
+button {
+    padding: 10px 20px;
+    background: #ff4500; /* Couleur vive pour attirer l'attention sur le bouton */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #e63900; /* Couleur plus sombre au survol */
+}
+
+.collection-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 900;
+}
+
+.collection-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 25vh;
+    height: 50vh;
+    text-align: center;
+}
+
+.collection-item:hover {
+    transform: scale(1.05); /* Effet de survol */
+    box-shadow: 0px 0px 15px 5px rgba(255, 215, 0, 0.6); /* Effet de survol lumineux */
+}
+
+.collection-item div:not(.collection_name_card):not(.collection_type_card):not(.collection_cooldown_1):not(.collection_cooldown_2):not(.tooltipskill1):not(.tooltipskill2):not(.tooltip_base_value):not(.sell_element) {
+    width: 25vh; /* Ajustez la largeur de l'image et du texte */
+    height: 25vh; /* Ajustez la hauteur de l'image */
+    background-size: contain;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.collection-item p {
+    color: #ddd;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.card-avatar {
+    width: fit-content;
+    height: 150px; /* Ajustez la hauteur si nécessaire */
+    background-size: cover;
+    background-position: center;
+}
+
+div#profil {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#classement {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#shop {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#gold {
+    font-family: system-ui;
+    font-weight: 900;
+}
+
+div#rank {
+    font-family: system-ui;
+    font-weight: 900;
+}
+div#pseudo {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#collection {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#amis {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#accueil {
+    font-family: cursive;
+    font-weight: 900;
+}
+div#deconnexion {
+    font-family: cursive;
+    font-weight: 900;
+}
+.collection_cooldown_card>*>img {
+    width: 1em;
+}
+.collection_type_card>img {
+    width: 3em;
+}
+.collection_name_card {
+    color: #ffbf00; /* Texte doré pour se démarquer */
+    font-size: 1em;
+    font-family: fantasy;
+}
+.collection_cooldown_1>span,
+.collection_cooldown_2>span {
+    font-size: 0.8em;
+}
+
+.collection_cooldown_1 {
+    width: max-content;
+}
+
+.collection_cooldown_2 {
+    width: max-content;
+}
+
+#container_collection_and_deck {
+    width: 80%;
+    display: flex;
+    gap: 1em;
+}
+#title_container_deck {
+    border: #26a69ae8;
+    border-style: groove;
+    border-radius: 20% 20% 20% 20%;
+    padding: 0.5em;
+    background: #26a69aa3;
+    font-size: 1.5em;
+    font-family: fantasy;
+    box-shadow: inset 0 0 20px 20px rgb(0 0 0 / 93%);
+}
+
+#title_create_container_deck {
+    border: #26a69ae8;
+    border-style: groove;
+    border-radius: 20% 20% 20% 20%;
+    padding: 0.5em;
+    background: #26a69aa3;
+    font-size: 1.5em;
+    font-family: fantasy;
+    box-shadow: inset 0 0 20px 20px rgb(0 0 0 / 93%);
+}
+
+#collection-decks {
+    align-items: center;
+    border-radius: 10px;
+    background: #26a69aa3;
+    box-shadow: inset 0 0 20px 7px rgb(0 0 0 / 93%);
+    padding: 0.5vw;
+}
+
+#collection-decks-add {
+    align-items: center;
+    border-radius: 10px;
+    background: #26a69aa3;
+    box-shadow: inset 0 0 20px 7px rgb(0 0 0 / 93%);
+    padding: 0.5vw;
+}
+
+#deck_container_create {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.circle {
+    width: 2.5vw;
+    height: 2.5vw;
+    border-radius: 50%;
+    background-color: lightgray;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+}
+
+.deck-container {
+    display: flex;
+    justify-content: space-between; /* Pour espacer les cercles à l'intérieur d'un deck */
+    align-items: center;
+    margin-top: 1em;
+}
+
+.delete-deck {
+    display: inline-block;
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+
+#create_deck {
+    width: 2vw;
+    height: 2vw;
+    background-color: #ff9700;
+    color: white;
+    font-size: 1.5vw;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: inset 0 0 7px 0.1em rgb(0 0 0 / 93%);
+}
+
+.delete-deck {
+    width: 2vw;
+    height: 2vw;
+    background-color: #56524b;
+    color: #ff0000;
+    font-size: 1.5vw;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: inset 0 0 7px 0.1em rgb(0 0 0 / 93%);
+}
+
+#create_deck:hover {
+    background-color: #45a049; /* Changement de couleur au survol */
+}
+
+#valid_new_deck {
+    border: #19ff00e8;
+    border-style: groove;
+    border-radius: 20% 20% 20% 20%;
+    padding: 0.5em;
+    background: #27ff00a3;
+    font-size: 1em;
+    font-family: fantasy;
+    box-shadow: inset 0 0 20px 13px rgb(0 0 0 / 93%)
+}
+
+#valid_new_deck:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    cursor: pointer;
+}
+
+#cancel_new_deck {
+    border: #a62626e8;
+    border-style: groove;
+    border-radius: 20% 20% 20% 20%;
+    padding: 0.5em;
+    background: #a62626a3;
+    font-size: 1em;
+    font-family: fantasy;
+    box-shadow: inset 0 0 20px 13px rgb(0 0 0 / 93%)
+}
+
+#cancel_new_deck:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    cursor: pointer;
+}
+
+#valid_and_cancel {
+    display: contents;
+}
+
+.collection_create_decks {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+}
+
+#collection_create_deck_1,
+#collection_create_deck_2,
+#collection_create_deck_3,
+#collection_create_deck_4 {
+    height: 9vh;
+    border: #2a2a2ae8;
+    border-style: inset;
+    margin: 0.2em 0 0.2em 0;
+    border-radius: 20% 20% 20% 20%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: inset -20px 0px 7px 0px rgb(0 0 0 / 93%);
+}
+#collection_create_deck_name_1,
+#collection_create_deck_name_2,
+#collection_create_deck_name_3,
+#collection_create_deck_name_4 {
+    font-family: 'Bebas Neue', sans-serif;
+        text-align: left;
+}
+
+#collection_create_deck_type_1>img,
+#collection_create_deck_type_2>img,
+#collection_create_deck_type_3>img,
+#collection_create_deck_type_4>img {
+    width: 3em;
+    display: flex;
+    margin-left: auto;
+}
+.name_deck{
+    background-color: #2c2f33;
+    color: #ffffff; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    font-family: 'Arial', sans-serif; /* Police */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ombre autour du champ */
+    transition: all 0.3s ease; /* Transition douce pour les effets */
+    font-family: 'Bebas Neue';
+}
+.deck-container {
+    border: black;
+    border-style: groove;
+    border-width: 0.3em;
+    box-shadow: inset 0 0 20px 7px rgb(0 0 0 / 93%);
+}
+
+/* TOOLTIP SKILL */
+
+.tooltipskill1 {
+    display: none; /* Par défaut, l'infobulle est cachée */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+    z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
+    bottom: 7.2em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+
+.tooltipskill2 {
+    display: none; /* Par défaut, l'infobulle est cachée */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px;
+    width: -webkit-fill-available;
+    border-radius: 5px;
+    z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
+    bottom: 7.2em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+
+/* Afficher l'infobulle au survol de l'image dans collection_cooldown_1 */
+.collection_cooldown_1 > *:hover + .tooltipskill1 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+/* Cacher tooltipskill2 au survol de collection_cooldown_1 */
+.collection_cooldown_1:hover ~ .tooltipskill2 {
+    display: none; /* Cacher tooltipskill2 */
+}
+
+/* Afficher l'infobulle au survol de l'image dans collection_cooldown_2 */
+.collection_cooldown_2 > *:hover + .tooltipskill2 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+/* Cacher tooltipskill1 au survol de collection_cooldown_2 */
+.collection_cooldown_2:hover ~ .tooltipskill1 {
+    display: none; /* Cacher tooltipskill1 */
+}

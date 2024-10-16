@@ -1,0 +1,625 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000; /* Fond de la page */
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.content {
+
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/map_default.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 100px 100px rgb(0 0 0 / 93%);
+    border-radius: 8px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Permet au contenu de prendre tout l'espace restant */
+    background-color: #f0f0f0; /* Couleur de fond de la div content (optionnel) */
+}
+
+#avatar_ennemie>img {
+    width: 5em;
+}
+
+#avatar_joueur>img {
+    width: 5em;
+}
+
+#ennemie {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px; /* Optionnel : pour ajouter un léger espacement par rapport aux bords */
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+}
+
+#joueur {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 10px; /* Optionnel : pour ajouter un léger espacement par rapport aux bords */
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+}
+
+.map-interactive-area {
+    position: absolute;
+    cursor: pointer;
+    background-image: url(../img/background_card.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: white;
+    border-style: groove;
+    border-width: 0.2em;
+}
+
+.map-interactive-area-elements {
+    position: absolute;
+    cursor: pointer;
+    background-image: url(../img/background_elements.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: white;
+    border-style: groove;
+    border-width: 0.2em;
+    box-shadow: inset 0 0 20px 20px rgba(0, 0, 0, 0.7);
+}
+
+.map-interactive-area-finish-turn {
+    position: absolute;
+    cursor: pointer;
+}
+
+.map-interactive-area-finish-turn>img {
+    position: absolute;
+    cursor: pointer;
+    width: inherit;
+    filter: drop-shadow(0.5em 1em 1em black);
+    transition: transform 1s ease-in-out;
+    filter: hue-rotate(327deg);
+}
+
+.map-interactive-area-finish-turn>img:hover {
+    transform: translateX(0%) rotate(360deg);
+    filter: hue-rotate(79deg);
+}
+
+/* Styles pour les différentes zones des pièces */
+#carte_player_1 { top: 51.5%; left: 15%; width: 12%; height: 35%; }
+#carte_player_2 { top: 51.5%; left: 34.33%; width: 12%; height: 35%; }
+#carte_player_3 { top: 51.5%; left: 53.66%; width: 12%; height: 35%; }
+#carte_player_4 { top: 51.5%; left: 72.99%; width: 12%; height: 35%; }
+
+
+#carte_ennemy_1 { top: 14.5%; left: 15%; width: 12%; height: 35%; } 
+#carte_ennemy_2 { top: 14.5%; left: 34.33%; width: 12%; height: 35%; }
+#carte_ennemy_3 { top: 14.5%; left: 53.66%; width: 12%; height: 35%; }
+#carte_ennemy_4 { top: 14.5%; left: 72.99%; width: 12%; height: 35%; }
+
+#elements_player_1 { top: 88%; left: 19%; width: 30vh; height: 10vh; border-radius: 30%; }
+#elements_player_2 { top: 88%; right: 19%; width: 30vh; height: 10vh; border-radius: 30%; }
+#elements_ennemy_1 { top: 2%; left: 19%; width: 30vh; height: 10vh; border-radius: 30%; }
+#elements_ennemy_2 { top: 2%; right: 19%; width: 30vh; height: 10vh; border-radius: 30%; }
+
+#finish_turn { top: 42.5%; left: 85%; width: 15vh; height: 13vh;}
+
+
+.map-interactive-area-effects {
+    width: 75%;
+    margin-top: 13vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9%;
+    border-radius: 8px;
+    background-color: rgb(163 170 164 / 41%);
+    box-shadow: 0 4px 8px rgb(123 123 123 / 20%);
+    gap: 1vh;
+}
+
+.effect {
+    width: 1em;
+    filter: drop-shadow(2px 4px 6px black);
+    height: 1em;
+    object-fit: contain;
+    background: #997a7a;
+    padding: 1%;
+    border-radius: 25%;
+    transition: opacity 0.3s;
+}
+
+.effect:hover {
+    opacity: 0.8; /* Légère diminution de l'opacité au survol */
+}
+
+.tooltip {
+    display: none; /* Par défaut, l'infobulle est cachée */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 5em;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
+}
+
+.effect:hover + .tooltip {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+
+/* TOOLTIP SKILL */
+
+.tooltipskill1 {
+    display: none; /* Par défaut, l'infobulle est cachée */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 95%;
+    color: #fff;
+    padding: 5px;
+    bottom: 10;
+    border-radius: 5px;
+    z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
+}
+
+.skill_1_carte_player>*:hover + .tooltipskill1 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+.skill_1_carte_ennemy>*:hover + .tooltipskill1 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+.skill_2_carte_player>*:hover + .tooltipskill2 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+.skill_2_carte_ennemy>*:hover + .tooltipskill2 {
+    display: block; /* Afficher l'infobulle au survol de l'image */
+}
+
+.skill_1_desc_tooltip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: 0.6em;
+    display: inline-grid;
+    justify-content: center;
+}
+
+.tooltipskill2 {
+    display: none; /* Par défaut, l'infobulle est cachée */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    width: 95%;
+    color: #fff;
+    padding: 5px;
+    bottom: 4em;
+    border-radius: 5px;
+    z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
+}
+
+.skill_2_desc_tooltip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: 0.6em;
+    display: inline-grid;
+    justify-content: center;
+}
+
+.effect_type_tooltip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: 1em;
+}
+
+.effect_time_tooltip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: italic;
+    font-size: 0.5em;
+}
+
+.effect_value_tooltip {
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: italic;
+    font-size: 0.5em;
+}
+
+.map-interactive-area>*>img {
+    width: -webkit-fill-available;
+}
+
+#img_carte_player_1,
+#img_carte_player_2,
+#img_carte_player_3,
+#img_carte_player_4,
+#img_carte_ennemy_1,
+#img_carte_ennemy_2,
+#img_carte_ennemy_3,
+#img_carte_ennemy_4 {
+    position: relative; /* Permet de positionner les éléments enfants de manière absolue */
+    display: flex; /* Pour centrer les éléments */
+    justify-content: center;
+    align-items: center;
+    width: -webkit-fill-available;
+    height: 20vh;
+    background-color: #f0f0f0; /* Optionnel : couleur de fond si l'image ne charge pas */
+    box-shadow: inset 0 0 10px 10px rgba(0, 0, 0, 0.7);
+    border-width: 0.2em;
+    border-radius: 10px;
+    border-style: inset;
+    border-color: #d4d4d4;
+}
+
+.cooldown-overlay {
+    position: absolute; /* Positionné par rapport au conteneur */
+    color: white; /* Couleur du texte */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour le contraste */
+    padding: 2px 5px; /* Espacement autour du texte */
+}
+
+.cooldown-overlay .cooldown {
+    bottom: 5px; /* Positionné en bas */
+    left: 5px; /* Positionné à gauche */
+}
+
+#hp_carte_player_1,
+#hp_carte_player_2,
+#hp_carte_player_3,
+#hp_carte_player_4,
+#hp_carte_ennemy_1,
+#hp_carte_ennemy_2,
+#hp_carte_ennemy_3,
+#hp_carte_ennemy_4 {
+    padding-top: 0em;
+}
+
+#carte_player_1,
+#carte_player_2,
+#carte_player_3,
+#carte_player_4,
+#carte_ennemy_1,
+#carte_ennemy_2,
+#carte_ennemy_3,
+#carte_ennemy_4 {
+    border-radius:15px;
+}
+#name_carte_player_1,
+#name_carte_player_2,
+#name_carte_player_3,
+#name_carte_player_4,
+#name_carte_ennemy_1,
+#name_carte_ennemy_2,
+#name_carte_ennemy_3,
+#name_carte_ennemy_4 {
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 1vw;
+}
+
+#type_carte_player_1,
+#type_carte_player_2,
+#type_carte_player_3,
+#type_carte_player_4,
+#type_carte_ennemy_1,
+#type_carte_ennemy_2,
+#type_carte_ennemy_3,
+#type_carte_ennemy_4 {
+    width: 7vh;
+    position: absolute;
+    top: -8%;
+    left: -15%;
+}
+
+#cooldown_skill_1_carte_ennemy_1>*>img,
+#cooldown_skill_1_carte_ennemy_2>*>img,
+#cooldown_skill_1_carte_ennemy_3>*>img,
+#cooldown_skill_1_carte_ennemy_4>*>img,
+#cooldown_skill_1_carte_player_1>*>img,
+#cooldown_skill_1_carte_player_2>*>img,
+#cooldown_skill_1_carte_player_3>*>img,
+#cooldown_skill_1_carte_player_4>*>img,
+#cooldown_skill_2_carte_ennemy_1>*>img,
+#cooldown_skill_2_carte_ennemy_2>*>img,
+#cooldown_skill_2_carte_ennemy_3>*>img,
+#cooldown_skill_2_carte_ennemy_4>*>img,
+#cooldown_skill_2_carte_player_1>*>img,
+#cooldown_skill_2_carte_player_2>*>img,
+#cooldown_skill_2_carte_player_3>*>img,
+#cooldown_skill_2_carte_player_4>*>img{
+    width: 1.2em;
+}
+
+#cooldown_skill_1_carte_ennemy_1>*>span,
+#cooldown_skill_1_carte_ennemy_2>*>span,
+#cooldown_skill_1_carte_ennemy_3>*>span,
+#cooldown_skill_1_carte_ennemy_4>*>span,
+#cooldown_skill_1_carte_player_1>*>span,
+#cooldown_skill_1_carte_player_2>*>span,
+#cooldown_skill_1_carte_player_3>*>span,
+#cooldown_skill_1_carte_player_4>*>span,
+#cooldown_skill_2_carte_ennemy_1>*>span,
+#cooldown_skill_2_carte_ennemy_2>*>span,
+#cooldown_skill_2_carte_ennemy_3>*>span,
+#cooldown_skill_2_carte_ennemy_4>*>span,
+#cooldown_skill_2_carte_player_1>*>span,
+#cooldown_skill_2_carte_player_2>*>span,
+#cooldown_skill_2_carte_player_3>*>span,
+#cooldown_skill_2_carte_player_4>*>span{
+    font-size: 1vw;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+#skill_2_carte_ennemy_1,
+#skill_2_carte_ennemy_2,
+#skill_2_carte_ennemy_3,
+#skill_2_carte_ennemy_4,
+#skill_2_carte_player_1,
+#skill_2_carte_player_2,
+#skill_2_carte_player_3,
+#skill_2_carte_player_4{
+    margin-top: 1em;
+}
+
+
+.health-bar-container {
+    width: 100%;
+    background-color: #e0e0e0; /* Couleur de fond pour indiquer la partie vide de la barre de vie */
+    border-radius: 5px;
+    margin: 5px 0; /* Espacement vertical pour la barre */
+    height: 15px; /* Hauteur de la barre */
+    position: relative; /* Permet de positionner le texte par rapport à ce conteneur */
+    font-family: monospace;
+    font-size: 1.5vh;
+    margin-top: 1.5em;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: #4caf50; /* Couleur verte pour les points de vie restants */
+    border-radius: 5px;
+    width: 100%; /* Par défaut, la barre est pleine */
+    transition: width 0.3s ease; /* Animation fluide pour les changements de largeur */
+    position: relative;
+}
+
+.health-bar-text {
+    position: absolute; /* Texte placé au centre */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center; /* Centre le texte */
+    color: white; /* Contraste pour le texte */
+    font-weight: bold;
+    z-index: 1; /* S'assurer que le texte est au-dessus de la barre */
+    pointer-events: none; /* Le texte ne peut pas être cliqué */
+}
+
+/* Tooltip */
+.map-interactive-area {
+    transition: transform 0.3s ease-in-out;
+}
+
+.map-interactive-area:hover {
+    transform: scale(1.5); /* Agrandir la carte au survol */
+    z-index: 10; /* Assurer que la carte agrandie soit au-dessus des autres */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Ajouter une ombre */
+}
+
+#elements_player_1>*,
+#elements_player_2>*,
+#elements_ennemy_1>*,
+#elements_ennemy_2>* {
+    display: contents;
+}
+
+#elements_player_1>*>img,
+#elements_player_2>*>img,
+#elements_ennemy_1>*>img,
+#elements_ennemy_2>*>img {
+    width: 5vw;
+}
+
+.elements_player_elements{
+    position: relative;
+    text-align: center;
+    margin: 20px; /* Ajustez la marge selon vos besoins */
+}
+
+.value_content_player_elements {
+    color: white;
+    position: absolute;
+    transform: translateX(-50%) rotate(45deg);
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    border-radius: 20%;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    box-shadow: inset 0px 0px 14px 3px rgb(0 0 0 / 93%);
+}
+
+#value_content_player_fire {
+    background-color: #d80a16;
+    bottom: 13%;
+    left: 18%;
+}
+#value_content_player_water {
+    background-color: #006495;
+    bottom: 13%;
+    left: 50%;
+}
+#value_content_player_earth {
+    background-color: #596b00;
+    bottom: 13%;
+    left: 82%;
+}
+#value_content_player_air {
+    background-color: #b5a2a1;
+    bottom: 13%;
+    left: 18%;
+}
+#value_content_player_dark {
+    background-color: #671866;
+    bottom: 13%;
+    left: 50%;
+}
+#value_content_player_light {
+    background-color: #c6b20e;
+    bottom: 13%;
+    left: 82%;
+}
+
+.value_player_element {
+    transform: translateX(0%) rotate(315deg);
+    font-size: 2em;
+}
+
+.elements_ennemy_elements{
+    position: relative;
+    text-align: center;
+    margin: 20px; /* Ajustez la marge selon vos besoins */
+}
+
+.value_content_ennemy_elements {
+    color: white;
+    position: absolute;
+    transform: translateX(-50%) rotate(45deg);
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    border-radius: 20%;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    box-shadow: inset 0px 0px 14px 3px rgb(0 0 0 / 93%);
+}
+
+#value_content_ennemy_fire {
+    background-color: #d80a16;
+    bottom: 13%;
+    left: 18%;
+}
+#value_content_ennemy_water {
+    background-color: #006495;
+    bottom: 13%;
+    left: 50%;
+}
+#value_content_ennemy_earth {
+    background-color: #596b00;
+    bottom: 13%;
+    left: 82%;
+}
+#value_content_ennemy_air {
+    background-color: #b5a2a1;
+    bottom: 13%;
+    left: 18%;
+}
+#value_content_ennemy_dark {
+    background-color: #671866;
+    bottom: 13%;
+    left: 50%;
+}
+#value_content_ennemy_light {
+    background-color: #c6b20e;
+    bottom: 13%;
+    left: 82%;
+}
+
+.value_ennemy_element {
+    transform: translateX(0%) rotate(315deg);
+    font-size: 2em;
+}
+
+.base_fire {
+    color:#d80a16;
+}
+.base_water {
+    color:#006495;
+}
+.base_air {
+    color:#b5a2a1;
+}
+.base_earth {
+    color:#596b00;
+}
+.base_dark {
+    color:#671866;
+}
+.base_light {
+    color:#c6b20e;
+}
+.base_crit {
+    color:#0ec6a4;
+}
+.base_precision {
+    color:#7aa353;
+}
+
+/* EFFET FIGHT */
+
+.effect_fight {
+    padding: 5px;
+    margin: 5px 0;
+    top: 1em;
+    color: red;
+    font-family: 'Bebas Neue';
+    font-size: 5em;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 2000;
+    animation: cut-animation 0.5s forwards;
+}
+
+
+.sword-effect {
+    position: absolute;
+    left: -1em;
+    top: 0;
+    transform: translateY(-50%);
+}
+
+.sword-effect.cut-animation {
+    z-index: -1;
+    width: 3em;
+    /* animation: cut-animation 0.5s forwards; Appliquer l'animation de coupe */
+}
+
+@keyframes cut-animation {
+    0% {
+        left: -20px;
+        opacity: 0; /* Commence cachée */
+        transform: translateY(-50%) rotate(0deg); /* Position de départ */
+    }
+    50% {
+        opacity: 1; /* Montre l'épée au milieu de l'animation */
+        transform: translateY(-50%) rotate(15deg); /* Rotation pendant la coupe */
+    }
+    100% {
+        left: 100%; /* Déplace l'épée à droite */
+        opacity: 0; /* Finit cachée */
+    }
+}
