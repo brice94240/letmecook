@@ -285,6 +285,9 @@ $(document).ready(function() {
                         $('#finish_turn').off('click').click(function() {
                             var player_id = '<?php echo $_SESSION['user_id']; ?>';
                             var game_id = response.game_info['id'];
+                            $('#skill_1_carte_player_1, #skill_2_carte_player_1, #skill_1_carte_player_2, #skill_2_carte_player_2, #skill_1_carte_player_3, #skill_2_carte_player_3, #skill_1_carte_player_4, #skill_2_carte_player_4').css({
+                                'color': 'white',
+                            });
                             $.ajax({
                                 url: 'refresh_game.php',
                                 type: 'POST',
@@ -642,7 +645,6 @@ $(document).ready(function() {
                                             ${DescSkill1Display}
                                         </div>`;
                                     if(skill[`skill_1_carte_player_${playerCardIndex}`] !== $('#skill_1_carte_player_' + playerCardIndex).html()){
-                                        console.log($('#skill_1_carte_player_' + playerCardIndex).html());
                                         $('#skill_1_carte_player_' + playerCardIndex).html(skill[`skill_1_carte_player_${playerCardIndex}`]);
                                     }
 
@@ -966,7 +968,6 @@ $(document).ready(function() {
                                     $('#value_content_player_fire').css('animation', 'popLight 1s ease-in-out forwards');
                                 }
                                 if ($('#value_player_water').html() != player.base_water) {
-                                    console.log("test");
                                     $('#value_player_water').html(player.base_water);
                                     $('#value_content_player_water').css('animation', 'none');
                                     $('#value_content_player_water')[0].offsetHeight;
