@@ -517,9 +517,22 @@ $(document).ready(function() {
                                                         Réussite : (${card.skill_1_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
                                                     </div>
                                                 </div>`;
+                                            } else if (["TRADE_BOOST"].includes(effect.TYPE)) {
+                                                let element = effect.TYPE.replace('TRADE_BOOST_', '').toLowerCase().replace(/^./, char => char.toUpperCase());
+                                                DescSkill1Display = 
+                                                `<div class="skill_1_desc_tooltip">${card['skill_1_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(<div class="${DamageTypeValues[element]}" style="display:contents;">${effect.PRICE}</div> - ${effect.DURATION})</div>
+                                                    <div class="base_crit">
+                                                        Crit : (${card.skill_1_crit + response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
+                                                    </div>
+                                                    <div class="base_precision">
+                                                        Réussite : (${card.skill_1_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
+                                                    </div>
+                                                </div>`;
                                             } else {
                                                 DescSkill1Display = 
                                                 `<div class="skill_1_desc_tooltip">${card['skill_1_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(${effect.DURATION})</div>
                                                     <div class="base_crit">
                                                         Crit : (${card.skill_1_crit+response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
                                                     </div>
@@ -560,9 +573,22 @@ $(document).ready(function() {
                                                         Réussite : (${card.skill_2_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
                                                     </div>
                                                 </div>`;
+                                            } else if (["TRADE_BOOST"].includes(effect.TYPE)) {
+                                                let element = effect.TYPE.replace('TRADE_BOOST_', '').toLowerCase().replace(/^./, char => char.toUpperCase());
+                                                DescSkill2Display = 
+                                                `<div class="skill_2_desc_tooltip">${card['skill_2_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(<div class="${DamageTypeValues[element]}" style="display:contents;">${effect.PRICE}</div> - ${effect.DURATION})</div>
+                                                    <div class="base_crit">
+                                                        Crit : (${card.skill_2_crit + response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
+                                                    </div>
+                                                    <div class="base_precision">
+                                                        Réussite : (${card.skill_2_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
+                                                    </div>
+                                                </div>`;
                                             } else {
                                                 DescSkill2Display = 
                                                 `<div class="skill_2_desc_tooltip">${card['skill_2_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(${effect.DURATION})</div>
                                                     <div class="base_crit">
                                                         Crit : (${card.skill_2_crit+response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
                                                     </div>
@@ -786,9 +812,22 @@ $(document).ready(function() {
                                                         Réussite : (${card.skill_1_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
                                                     </div>
                                                 </div>`;
+                                            } else if (["TRADE_BOOST"].includes(effect.TYPE)) {
+                                                let element = effect.TYPE.replace('TRADE_BOOST_', '').toLowerCase().replace(/^./, char => char.toUpperCase());
+                                                DescSkill1Display = 
+                                                `<div class="skill_1_desc_tooltip">${card['skill_1_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(<div class="${DamageTypeValues[element]}" style="display:contents;">${effect.PRICE}</div> - ${effect.DURATION})</div>
+                                                    <div class="base_crit">
+                                                        Crit : (${card.skill_1_crit + response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
+                                                    </div>
+                                                    <div class="base_precision">
+                                                        Réussite : (${card.skill_1_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
+                                                    </div>
+                                                </div>`;
                                             } else {
                                                 DescSkill1Display = 
                                                 `<div class="skill_1_desc_tooltip">${card['skill_1_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(${effect.DURATION})</div>
                                                     <div class="base_crit">
                                                         Crit : (${card.skill_1_crit+response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
                                                     </div>
@@ -829,9 +868,22 @@ $(document).ready(function() {
                                                         Réussite : (${card.skill_2_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
                                                     </div>
                                                 </div>`;
+                                            } else if (["TRADE_BOOST"].includes(effect.TYPE)) {
+                                                let element = effect.TYPE.replace('TRADE_BOOST_', '').toLowerCase().replace(/^./, char => char.toUpperCase());
+                                                DescSkill2Display = 
+                                                `<div class="skill_2_desc_tooltip">${card['skill_2_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(<div class="${DamageTypeValues[element]}" style="display:contents;">${effect.PRICE}</div> - ${effect.DURATION})</div>
+                                                    <div class="base_crit">
+                                                        Crit : (${card.skill_2_crit + response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
+                                                    </div>
+                                                    <div class="base_precision">
+                                                        Réussite : (${card.skill_2_precision + response.players_game.find(player => player.player_id === card.player_id)['base_precision']}%)
+                                                    </div>
+                                                </div>`;
                                             } else {
                                                 DescSkill2Display = 
                                                 `<div class="skill_2_desc_tooltip">${card['skill_2_desc']}
+                                                    <div class="${DamageTypeValues[card['type']]}">(${effect.DURATION})</div>
                                                     <div class="base_crit">
                                                         Crit : (${card.skill_2_crit+response.players_game.find(player => player.player_id === card.player_id)['base_crit']}%)
                                                     </div>
