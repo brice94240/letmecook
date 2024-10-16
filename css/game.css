@@ -464,31 +464,38 @@ body {
     background-color: #d80a16;
     bottom: 13%;
     left: 18%;
+    animation: popLight 1s ease-in-out forwards;
 }
+
 #value_content_player_water {
     background-color: #006495;
     bottom: 13%;
     left: 50%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_player_earth {
     background-color: #596b00;
     bottom: 13%;
     left: 82%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_player_air {
     background-color: #b5a2a1;
     bottom: 13%;
     left: 18%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_player_dark {
     background-color: #671866;
     bottom: 13%;
     left: 50%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_player_light {
     background-color: #c6b20e;
     bottom: 13%;
     left: 82%;
+    animation: popLight 1s ease-in-out forwards;
 }
 
 .value_player_element {
@@ -520,31 +527,53 @@ body {
     background-color: #d80a16;
     bottom: 13%;
     left: 18%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_ennemy_water {
     background-color: #006495;
     bottom: 13%;
     left: 50%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_ennemy_earth {
     background-color: #596b00;
     bottom: 13%;
     left: 82%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_ennemy_air {
     background-color: #b5a2a1;
     bottom: 13%;
     left: 18%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_ennemy_dark {
     background-color: #671866;
     bottom: 13%;
     left: 50%;
+    animation: popLight 1s ease-in-out forwards;
 }
 #value_content_ennemy_light {
     background-color: #c6b20e;
     bottom: 13%;
     left: 82%;
+    animation: popLight 1s ease-in-out forwards;
+}
+
+/* Animation de lumière (flash lumineux) */
+@keyframes popLight {
+    0% {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+        font-size: 1em;
+    }
+    50% {
+        box-shadow: 0 0 30px rgb(229 245 0 / 80%), 0 0 60px rgba(255, 255, 255, 0.5);
+        font-size: 1.5em;
+    }
+    100% {
+        box-shadow: inset 0px 0px 14px 3px rgb(0 0 0 / 93%);
+        font-size: 1em;
+    }
 }
 
 .value_ennemy_element {

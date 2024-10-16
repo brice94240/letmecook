@@ -959,19 +959,80 @@ $(document).ready(function() {
                         response.players_game.forEach(function(player) {
                             // Vérifier si c'est le joueur actuel
                             if (player.player_id == '<?php echo $_SESSION['user_id']; ?>') {
-                                $('#value_player_fire').html(player.base_fire);
-                                $('#value_player_water').html(player.base_water);
-                                $('#value_player_earth').html(player.base_earth);
-                                $('#value_player_air').html(player.base_air);
-                                $('#value_player_dark').html(player.base_dark);
-                                $('#value_player_light').html(player.base_light);
+                                if ($('#value_player_fire').html() != player.base_fire) {
+                                    $('#value_player_fire').html(player.base_fire);
+                                    $('#value_content_player_fire').css('animation', 'none');
+                                    $('#value_content_player_fire')[0].offsetHeight;
+                                    $('#value_content_player_fire').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_player_water').html() != player.base_water) {
+                                    console.log("test");
+                                    $('#value_player_water').html(player.base_water);
+                                    $('#value_content_player_water').css('animation', 'none');
+                                    $('#value_content_player_water')[0].offsetHeight;
+                                    $('#value_content_player_water').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_player_earth').html() != player.base_earth) {
+                                    $('#value_player_earth').html(player.base_earth);
+                                    $('#value_content_player_earth').css('animation', 'none');
+                                    $('#value_content_player_earth')[0].offsetHeight;
+                                    $('#value_content_player_earth').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_player_air').html() != player.base_air) {
+                                    $('#value_player_air').html(player.base_air);
+                                    $('#value_content_player_air').css('animation', 'none');
+                                    $('#value_content_player_air')[0].offsetHeight;
+                                    $('#value_content_player_air').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_player_dark').html() != player.base_dark) {
+                                    $('#value_player_dark').html(player.base_dark);
+                                    $('#value_content_player_dark').css('animation', 'none');
+                                    $('#value_content_player_dark')[0].offsetHeight;
+                                    $('#value_content_player_dark').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_player_light').html() != player.base_light) {
+                                    $('#value_player_light').html(player.base_light);
+                                    $('#value_content_player_light').css('animation', 'none');
+                                    $('#value_content_player_light')[0].offsetHeight;
+                                    $('#value_content_player_light').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
                             } else {
-                                $('#value_ennemy_fire').html(player.base_fire);
-                                $('#value_ennemy_water').html(player.base_water);
-                                $('#value_ennemy_earth').html(player.base_earth);
-                                $('#value_ennemy_air').html(player.base_air);
-                                $('#value_ennemy_dark').html(player.base_dark);
-                                $('#value_ennemy_light').html(player.base_light);
+                                if ($('#value_ennemy_fire').html() != player.base_fire) {
+                                    $('#value_ennemy_fire').html(player.base_fire);
+                                    $('#value_content_ennemy_fire').css('animation', 'none');
+                                    $('#value_content_ennemy_fire')[0].offsetHeight;
+                                    $('#value_content_ennemy_fire').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_ennemy_water').html() != player.base_water) {
+                                    $('#value_ennemy_water').html(player.base_water);
+                                    $('#value_content_ennemy_water').css('animation', 'none');
+                                    $('#value_content_ennemy_water')[0].offsetHeight;
+                                    $('#value_content_ennemy_water').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_ennemy_earth').html() != player.base_earth) {
+                                    $('#value_ennemy_earth').html(player.base_earth);
+                                    $('#value_content_ennemy_earth').css('animation', 'none');
+                                    $('#value_content_ennemy_earth')[0].offsetHeight;
+                                    $('#value_content_ennemy_earth').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_ennemy_air').html() != player.base_air) {
+                                    $('#value_ennemy_air').html(player.base_air);
+                                    $('#value_content_ennemy_air').css('animation', 'none');
+                                    $('#value_content_ennemy_air')[0].offsetHeight;
+                                    $('#value_content_ennemy_air').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_ennemy_dark').html() != player.base_dark) {
+                                    $('#value_ennemy_dark').html(player.base_dark);
+                                    $('#value_content_ennemy_dark').css('animation', 'none');
+                                    $('#value_content_ennemy_dark')[0].offsetHeight;
+                                    $('#value_content_ennemy_dark').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
+                                if ($('#value_ennemy_light').html() != player.base_light) {
+                                    $('#value_ennemy_light').html(player.base_light);
+                                    $('#value_content_ennemy_light').css('animation', 'none');
+                                    $('#value_content_ennemy_light')[0].offsetHeight;
+                                    $('#value_content_ennemy_light').css('animation', 'popLight 1s ease-in-out forwards');
+                                }
                             }
                         });
                     }
