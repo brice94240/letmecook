@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 $players_game_info = $stmt_players_game_info->fetch(PDO::FETCH_ASSOC);
 
                 $stmt_ennemy_game_info = $pdo->prepare("SELECT * FROM players_game WHERE player_id = :ennemy_id AND game_id = :game_id");
-                $stmt_ennemy_game_info->execute(['ennemy_id' => $card_info_ennemy['player_id'], 'game_id' => $game_id]);
+                $stmt_ennemy_game_info->execute(['ennemy_id' => $ennemy_id, 'game_id' => $game_id]);
                 $ennemy_game_info = $stmt_ennemy_game_info->fetch(PDO::FETCH_ASSOC);
 
                 $stmt_card_info = $pdo->prepare("SELECT * FROM cards_game WHERE player_id = :player_id AND card_id = :card_id AND game_id = :game_id AND card_id = :card_id");
@@ -366,101 +366,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                                             'game_id' => $game_id
                                         ]);
                                         break;
-                                    case 'DEFAULT':
-                                        // Calcul des nouveaux PV après application de l'effet
-                                        $new_hp_left = $card_info_ennemy['hp_left'] - $skill_final_damage;
-                                    
-                                        // Préparer la requête pour mettre à jour les PV
-                                        $stmt_update_hp = $pdo->prepare("
-                                            UPDATE cards_game 
-                                            SET hp_left = :new_hp_left 
-                                            WHERE id = :card_id AND game_id = :game_id
-                                        ");
-                                    
-                                        // Exécuter la mise à jour des PV en s'assurant que les PV ne tombent pas sous 0
-                                        $stmt_update_hp->execute([
-                                            'new_hp_left' => max(0, $new_hp_left),  // Limiter les PV à 0 minimum
-                                            'card_id' => $card_info_ennemy['id'],  // Utiliser l'ID de l'ennemi
-                                            'game_id' => $game_id
-                                        ]);
-                                        break;
                                     
                                     default:
-                                        // // Calcul des nouveaux PV après application de l'effet
-                                        // $new_hp_left = $card_info_ennemy['hp_left'] - $skill_final_damage;
-                                    
-                                        // // Préparer la requête pour mettre à jour les PV
-                                        // $stmt_update_hp = $pdo->prepare("
-                                        //     UPDATE cards_game 
-                                        //     SET hp_left = :new_hp_left 
-                                        //     WHERE id = :card_id AND game_id = :game_id
-                                        // ");
-                                    
-                                        // // Exécuter la mise à jour des PV en s'assurant que les PV ne tombent pas sous 0
-                                        // $stmt_update_hp->execute([
-                                        //     'new_hp_left' => max(0, $new_hp_left),  // Limiter les PV à 0 minimum
-                                        //     'card_id' => $card_info_ennemy['id'],  // Utiliser l'ID de l'ennemi
-                                        //     'game_id' => $game_id
-                                        // ]);
     
                                 }
                             }
-                        }
-                        
-                        // Vérifier si la colonne 'affect_effect' existe déjà dans la base de données
-                        $stmt_card_info = $pdo->prepare("
-                        SELECT affect_effect 
-                        FROM cards_game 
-                        WHERE player_id = :ennemy_id 
-                        AND deck_id = :deck_id 
-                        AND game_id = :game_id 
-                        AND card_id = :card_id
-                        ");
-                        $stmt_card_info->execute([
-                        'ennemy_id' => $ennemy_id,
-                        'deck_id' => $cards_use['id'],
-                        'game_id' => $game_id,
-                        'card_id' => $card_id
-                        ]);
-    
-                        $current_effects_json = $stmt_card_info->fetchColumn(); // Récupérer les effets existants
-    
-                        // Vérifier si la chaîne est vide ou si le décodage a échoué
-                        if ($current_effects_json === false || empty($current_effects_json)) {
-                        $current_effects = []; // Initialiser un tableau vide
-                        } else {
-                        // Essayer de décoder les effets existants
-                        $current_effects = json_decode($current_effects_json, true);
-    
-                        // Si le décodage échoue, initialiser un tableau vide
-                        if (!is_array($current_effects)) {
-                            $current_effects = [];
-                        }
-                        }
-                        
-                        if (!empty($effects_to_add)) {
-                            // Fusionner les effets existants avec les nouveaux effets
-                            $current_effects = array_merge($current_effects, $effects_to_add);
-    
-                            // Encoder les effets fusionnés en JSON
-                            $card_info['affect_effect'] = json_encode($current_effects);
-    
-                            // Optionnel : mettre à jour la base de données avec les nouveaux effets
-                            $stmt_update = $pdo->prepare("
-                            UPDATE cards_game 
-                            SET affect_effect = :affect_effect 
-                            WHERE player_id = :ennemy_id 
-                            AND deck_id = :deck_id 
-                            AND game_id = :game_id 
-                            AND card_id = :card_id
-                            ");
-                            $stmt_update->execute([
-                            'affect_effect' => $card_info['affect_effect'],
-                            'ennemy_id' => $ennemy_id,
-                            'deck_id' => $cards_use['id'],
-                            'game_id' => $game_id,
-                            'card_id' => $card_id
-                            ]);
                         }
                     }
                     // Prépare la requête pour récupérer le cooldown du sort
@@ -480,7 +390,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         ]);
                     }
     
-                    echo json_encode(['success' => true, 'precision' => $precision, 'crit' => $crit, 'numero_skill' => $numero_skill, 'numero_carte' => $numero_carte, "skill_final_damage" => $skill_final_damage, "skill_info_cooldown" => $skill_info_cooldown, "card_use" => $cards_use['id']]);
+                    echo json_encode(['success' => true, 'precision' => $precision, 'crit' => $crit, 'numero_skill' => $numero_skill, 'numero_carte' => $numero_carte, "skill_final_damage" => $skill_final_damage, "skill_info_cooldown" => $skill_info_cooldown]);
                 } else {
                     echo json_encode(['success' => false, 'game' => true, 'message' => "Vous ne pouvez pas utiliser ce sort !"]);
                 }
