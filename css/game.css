@@ -172,7 +172,6 @@ body {
     width: 95%;
     color: #fff;
     padding: 5px;
-    bottom: 10;
     border-radius: 5px;
     z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
 }
@@ -208,7 +207,7 @@ body {
     width: 95%;
     color: #fff;
     padding: 5px;
-    bottom: 4em;
+    bottom: 7vw;
     border-radius: 5px;
     z-index: 100; /* S'assurer que l'infobulle est au-dessus des autres éléments */
 }
@@ -450,8 +449,8 @@ body {
     color: white;
     position: absolute;
     transform: translateX(-50%) rotate(45deg);
-    width: 3em;
-    height: 3em;
+    width: 7vh;
+    height: 7vh;
     display: flex;
     align-items: center;
     border-radius: 20%;
@@ -513,8 +512,8 @@ body {
     color: white;
     position: absolute;
     transform: translateX(-50%) rotate(45deg);
-    width: 3em;
-    height: 3em;
+    width: 7vh;
+    height: 7vh;
     display: flex;
     align-items: center;
     border-radius: 20%;

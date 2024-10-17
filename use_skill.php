@@ -1277,12 +1277,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1310,12 +1304,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1343,12 +1331,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1376,12 +1358,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1409,12 +1385,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1442,12 +1412,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
                                         if($element_count >= $boost_price){ //Si j'ai assez de monnaie
                                             $new_element_count = $element_count - $boost_price;
-                                            $test = "
-                                                UPDATE players_game 
-                                                SET base_" . $skill_use_type." = :new_boost_element,
-                                                    ".$element." = :new_element_count
-                                                WHERE player_id = :player_id AND game_id = :game_id
-                                            ";
                                             $stmt_update_boost_element = $pdo->prepare("
                                                 UPDATE players_game 
                                                 SET base_" . $skill_use_type." = :new_boost_element,
@@ -1583,62 +1547,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                                 }
                             }
                         }
-                        
-                        // Vérifier si la colonne 'affect_effect' existe déjà dans la base de données
-                        $stmt_card_info = $pdo->prepare("
-                        SELECT affect_effect 
-                        FROM cards_game 
-                        WHERE player_id = :ennemy_id 
-                        AND deck_id = :deck_id 
-                        AND game_id = :game_id 
-                        AND card_id = :card_id
-                        ");
-                        $stmt_card_info->execute([
-                        'ennemy_id' => $ennemy_id,
-                        'deck_id' => $cards_use['id'],
-                        'game_id' => $game_id,
-                        'card_id' => $card_id
-                        ]);
-
-                        $current_effects_json = $stmt_card_info->fetchColumn(); // Récupérer les effets existants
-
-                        // Vérifier si la chaîne est vide ou si le décodage a échoué
-                        if ($current_effects_json === false || empty($current_effects_json)) {
-                        $current_effects = []; // Initialiser un tableau vide
-                        } else {
-                        // Essayer de décoder les effets existants
-                        $current_effects = json_decode($current_effects_json, true);
-
-                        // Si le décodage échoue, initialiser un tableau vide
-                        if (!is_array($current_effects)) {
-                            $current_effects = [];
-                        }
-                        }
-                        
-                        if (!empty($effects_to_add)) {
-                            // Fusionner les effets existants avec les nouveaux effets
-                            $current_effects = array_merge($current_effects, $effects_to_add);
-
-                            // Encoder les effets fusionnés en JSON
-                            $card_info['affect_effect'] = json_encode($current_effects);
-
-                            // Optionnel : mettre à jour la base de données avec les nouveaux effets
-                            $stmt_update = $pdo->prepare("
-                            UPDATE cards_game 
-                            SET affect_effect = :affect_effect 
-                            WHERE player_id = :ennemy_id 
-                            AND deck_id = :deck_id 
-                            AND game_id = :game_id 
-                            AND card_id = :card_id
-                            ");
-                            $stmt_update->execute([
-                            'affect_effect' => $card_info['affect_effect'],
-                            'ennemy_id' => $ennemy_id,
-                            'deck_id' => $cards_use['id'],
-                            'game_id' => $game_id,
-                            'card_id' => $card_id
-                            ]);
-                        }
                     }
                     // Prépare la requête pour récupérer le cooldown du sort
                     $stmt_skill_info_cooldown = $pdo->prepare("SELECT * FROM cards WHERE id = :card_id");
@@ -1657,7 +1565,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         ]);
                     }
 
-                    echo json_encode(['success' => true, 'precision' => $precision, 'crit' => $crit, 'card_id' => $card_info, 'card_info_ennemy' => $card_info_ennemy, 'numero_skill' => $numero_skill, 'numero_carte_ennemy' => $numero_carte_ennemy, "card_id" => $card_id, "skill_final_damage" => $skill_final_damage, "skill_info_cooldown" => $skill_info_cooldown, "card_use" => $cards_use['id'], 'test' => $test]);
+                    echo json_encode(['success' => true, 'precision' => $precision, 'crit' => $crit, 'card_id' => $card_info, 'numero_skill' => $numero_skill, "skill_final_damage" => $skill_final_damage, "skill_info_cooldown" => $skill_info_cooldown]);
                 } else {
                     echo json_encode(['success' => false, 'game' => true, 'message' => "Vous ne pouvez pas utiliser ce sort !"]);
                 }
