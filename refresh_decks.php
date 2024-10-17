@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'refresh') {
     try {
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         // Préparer la requête pour sélectionner les decks et joindre les cartes
         $sql = "
             SELECT 
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
     try {
         // Récupérer les données envoyées via POST
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $data_ids = $_POST['dataIds'];
         $title_deck = $_POST['TitleDeck'];
     
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
     try {
         // Récupérer les données envoyées via POST
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $data_id = $_POST['dataId'];
 
         // Vérifier si le deck à supprimer n'est pas celui utilisé par le joueur
@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'select') {
     try {
         // Récupérer les données envoyées via POST
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $selectedDeckId = $_POST['selectedDeckId'];
 
         if (isset($user_id) && isset($selectedDeckId)) {

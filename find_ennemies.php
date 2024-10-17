@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'find_ennemies') {
     try {
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
 
         // Préparez la requête pour trouver les autres joueurs dans la même file d'attente
         $stmt = $pdo->prepare("SELECT * FROM players WHERE `queue` = :status_queue AND `id` != :user_id");

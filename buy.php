@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'buy_pack') {
     try {
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $pack_id = $_POST['packId'];
 
         // Préparez la requête pour trouver les autres joueurs dans la même file d'attente

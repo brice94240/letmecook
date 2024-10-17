@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'refresh') {
     try {
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
         $search = isset($_POST['searchTerm']) ? $_POST['searchTerm'] : '';
         $type = isset($_POST['selectedType']) ? $_POST['selectedType'] : '';
 

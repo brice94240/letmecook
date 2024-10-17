@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'refresh') {
     try {
-        $user_id = $_POST['user_id'];
+        $user_id = $_SESSION['user_id'];
 
         $stmt_packs_shop = $pdo->prepare("SELECT * FROM packs_shop");
         $stmt_packs_shop->execute();
