@@ -282,7 +282,9 @@ $(document).ready(function() {
                                 'filter': 'hue-rotate(327deg)'
                             });
                         });
+                        $('#finish_turn').show();
                         $('#finish_turn').off('click').click(function() {
+                            $('#finish_turn').prop('disabled', true);
                             var player_id = '<?php echo $_SESSION['user_id']; ?>';
                             var game_id = response.game_info['id'];
                             $('#skill_1_carte_player_1, #skill_2_carte_player_1, #skill_1_carte_player_2, #skill_2_carte_player_2, #skill_1_carte_player_3, #skill_2_carte_player_3, #skill_1_carte_player_4, #skill_2_carte_player_4').css({
@@ -316,6 +318,8 @@ $(document).ready(function() {
                                 game_id: game_id
                             },
                             success: function(response) {
+                                if(response.new_turn == true){
+                                }
                             },
                             error: function(xhr, status, error) {
                                 console.error('Erreur:', status, error);
@@ -323,18 +327,7 @@ $(document).ready(function() {
                         });
 
                     } else {
-                        $('.map-interactive-area-finish-turn > img').css({
-                            'filter': 'grayscale(1)',
-                            'cursor': 'not-allowed'
-                        });
-
-                        // Désactiver l'effet hover pour le joueur inactif
-                        $('.map-interactive-area-finish-turn > img').off('mouseenter mouseleave').hover(function() {
-                            $(this).css({
-                                'transform': 'unset',
-                                'filter': 'grayscale(1)'
-                            });
-                        });
+                        $('#finish_turn').hide();
                     }
 
                     if (response.cards_game) {

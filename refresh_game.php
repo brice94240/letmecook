@@ -370,9 +370,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 // Décoder les données du tour depuis la base de données (PHP utilise json_decode)
                 $turn_data = json_decode($row_game_turn_data['turn_data'], true);
                 $turn = $row_game_turn_data['turn'];
+                $new_turn = $row_game_turn_data['new_turn'];
             
-                // Vérifier si c'est le tour de l'utilisateur
-                if (($turn % 2 == 0 && $turn_data[1] == $user_id) || ($turn % 2 !== 0 && $turn_data[0] == $user_id)) {
+                if (($turn % 2 == 0 && $turn_data[1] == $user_id) || ($turn % 2 !== 0 && $turn_data[0] == $user_id) && $new_turn == false) {
                     
                     // Incrémenter la colonne 'turn'
                     $stmt_turn = $pdo->prepare("UPDATE games SET turn = turn + 1 WHERE id = :game_id");

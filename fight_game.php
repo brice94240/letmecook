@@ -249,12 +249,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                             }
                         }
                     }
-                    echo json_encode(['success' => true, 'new_turn' => true]);
                 }
                 
-                else {
-                    echo json_encode(['success' => false, 'new_turn' => true]);
-                }
+                // Mettre à jour 'game.new_turn' à false
+                $stmt_update_turn = $pdo->prepare("
+                    UPDATE games 
+                    SET new_turn = 0
+                    WHERE id = :game_id
+                ");
+                $stmt_update_turn->execute(['game_id' => $game_id]);
+
+                echo json_encode(['success' => false, 'new_turn' => true]);
             } else {
                 // Gérer les skills spéciaux
                 $special_skills = [
